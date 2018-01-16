@@ -1,7 +1,8 @@
 package plc;
 
-import java.util.ArrayList;
-
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,20 +10,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-
 import plc.listeners.env.Explosion;
 import plc.listeners.env.MobSpawn;
 import plc.listeners.env.Weather;
-import plc.listeners.player.Damage;
-import plc.listeners.player.Drop;
-import plc.listeners.player.Hunger;
-import plc.listeners.player.Interact;
-import plc.listeners.player.InvClick;
-import plc.listeners.player.Join;
-import plc.listeners.player.Leave;
+import plc.listeners.player.*;
 import plc.placeholder.OnlinePlayers;
 import plc.placeholder.Rank;
 import plc.serverselector.Serverselector;
@@ -31,7 +22,8 @@ import plc.util.FileUtil;
 import plc.util.ItemUtil;
 import plc.util.Placeholder;
 import plc.util.StringUtil;
-import net.md_5.bungee.api.ChatColor;
+
+import java.util.ArrayList;
 
 public class PLC extends JavaPlugin {
 
