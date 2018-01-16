@@ -1,5 +1,6 @@
 package plc.listeners.player;
 
+import code.matthew.psc.utils.strings.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -7,12 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scoreboard.Scoreboard;
-
 import plc.PLC;
 import plc.sb.ScoreboardManager;
 import plc.tab.TabList;
 import plc.util.FileUtil;
-import plc.util.StringUtil;
 
 public class Join implements Listener {
 
@@ -25,7 +24,7 @@ public class Join implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		e.setJoinMessage("");
-		String msg = StringUtil.colorize(FileUtil.getConfig().getString("joinMsg"));
+		String msg = ColorUtil.colorStr(FileUtil.getConfig().getString("joinMsg"));
 		msg = msg.replaceAll("%PLAYER%", e.getPlayer().getName());
 		Bukkit.broadcastMessage(msg);
 		e.getPlayer().getInventory().setItem(FileUtil.getConfig().getInt("hideSlot"), PLC.hidePlayersItem);

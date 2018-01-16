@@ -1,14 +1,12 @@
 package plc.tab;
 
-import org.bukkit.entity.Player;
-
+import code.matthew.psc.utils.strings.ColorUtil;
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
-
+import org.bukkit.entity.Player;
 import plc.PLC;
 import plc.util.FileUtil;
-import plc.util.StringUtil;
 
 public class TabList {
 
@@ -19,8 +17,8 @@ public class TabList {
 		String header = FileUtil.getConfig().getString("tabHeader");
 		String footer = FileUtil.getConfig().getString("tabFooter");
 
-		header = StringUtil.colorize(header);
-		footer = StringUtil.colorize(footer);
+		header = ColorUtil.colorStr(header);
+		footer = ColorUtil.colorStr(footer);
 
 		pc.getChatComponents().write(0, WrappedChatComponent.fromText(header)).write(1,
 				WrappedChatComponent.fromText(footer));

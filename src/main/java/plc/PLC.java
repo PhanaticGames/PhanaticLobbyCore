@@ -1,5 +1,6 @@
 package plc;
 
+import code.matthew.psc.utils.strings.ColorUtil;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import net.md_5.bungee.api.ChatColor;
@@ -21,7 +22,6 @@ import plc.time.ITimeCheck;
 import plc.util.FileUtil;
 import plc.util.ItemUtil;
 import plc.util.Placeholder;
-import plc.util.StringUtil;
 
 import java.util.ArrayList;
 
@@ -87,15 +87,15 @@ public class PLC extends JavaPlugin {
 	private void setupItems() {
 		hidePlayersItem = new ItemStack(Material.TORCH);
 		ItemMeta hideMeta = hidePlayersItem.getItemMeta();
-		String name = StringUtil.colorize(FileUtil.getConfig().getString("hideName"));
+		String name = ColorUtil.colorStr(FileUtil.getConfig().getString("hideName"));
 		hideMeta.setDisplayName(name);
 		hidePlayersItem.setItemMeta(hideMeta);
 		
 		serverSelectorItem = new ItemStack(Material.getMaterial(FileUtil.getConfig().getString("serverSelecterMat")));
 		ItemMeta serverSelectorItemMeta = serverSelectorItem.getItemMeta();
-		String name2 = StringUtil.colorize(FileUtil.getConfig().getString("serverSelecterName"));
+		String name2 = ColorUtil.colorStr(FileUtil.getConfig().getString("serverSelecterName"));
 		serverSelectorItemMeta.setDisplayName(name2);
-		serverSelectorItemMeta.setLore(StringUtil.colorizeList(FileUtil.getConfig().getStringList("serverSelecterLore")));
+		serverSelectorItemMeta.setLore(ColorUtil.colorList(FileUtil.getConfig().getStringList("serverSelecterLore")));
 		serverSelectorItem.setItemMeta(serverSelectorItemMeta);
 	}
 	

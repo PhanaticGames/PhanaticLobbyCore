@@ -1,21 +1,21 @@
 package plc.api;
 
-import java.util.List;
-
 import org.bukkit.Material;
+
+import java.util.List;
 
 public interface IGUIItem {
 
-	public String getID();
+	String getID();
 
-	public String getName();
+	String getName();
 
-	public Material getMaterial();
+	Material getMaterial();
 
-	public int getType();
+	int getType();
 
-	public List<String> getLore();
+	List<String> getLore();
 
-	public int getData();
+	int getData();
 
 }

@@ -1,16 +1,15 @@
 package plc.listeners.player;
 
+import code.matthew.psc.utils.strings.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-
 import plc.PLC;
 import plc.serverselector.Serverselector;
 import plc.util.FileUtil;
-import plc.util.StringUtil;
 
 public class Interact implements Listener {
 
@@ -33,7 +32,7 @@ public class Interact implements Listener {
 
 					PLC.hidden.add(e.getPlayer());
 
-					e.getPlayer().sendMessage(StringUtil.colorize(FileUtil.getConfig().getString("playersHidden")));
+					e.getPlayer().sendMessage(ColorUtil.colorStr(FileUtil.getConfig().getString("playersHidden")));
 
 				} else {
 					for (Player p : Bukkit.getOnlinePlayers()) {
@@ -42,13 +41,11 @@ public class Interact implements Listener {
 
 					PLC.hidden.remove(e.getPlayer());
 
-					e.getPlayer().sendMessage(StringUtil.colorize(FileUtil.getConfig().getString("playersRevaled")));
+					e.getPlayer().sendMessage(ColorUtil.colorStr(FileUtil.getConfig().getString("playersRevaled")));
 				}
 			} else if(e.getPlayer().getItemInHand().getType() == PLC.serverSelectorItem.getType()) {
 				e.getPlayer().closeInventory();
 				Serverselector.openServerSelector(e.getPlayer());
-			} else {
-				return;
 			}
 		}
 	}

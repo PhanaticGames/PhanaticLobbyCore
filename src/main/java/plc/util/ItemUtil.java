@@ -1,15 +1,15 @@
 package plc.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import code.matthew.psc.utils.strings.ColorUtil;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import plc.api.IGUIItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemUtil {
 
@@ -19,20 +19,20 @@ public class ItemUtil {
 	public static ItemStack genItemStack(String id) {
 		IGUIItem item = null;
 
-		for (int i = 0; i < stack.size(); i++) {
-			if (stack.get(i).getID().equals(id)) {
-				item = stack.get(i);
-			}
-		}
+		for(IGUIItem iguiItem : stack) {
+		    if(item.getID().equals(id)) {
+                item = iguiItem;
+            }
+        }
 
-		ItemStack itemStack = null;
+		ItemStack itemStack;
 
 		if (item != null) {
 			Material mat = item.getMaterial();
 			itemStack = new ItemStack(mat, 1, (short) item.getData());
 			ItemMeta isMeta = itemStack.getItemMeta();
-			isMeta.setDisplayName(StringUtil.colorize(item.getName()));
-			isMeta.setLore(StringUtil.colorizeList(item.getLore()));
+			isMeta.setDisplayName(ColorUtil.colorStr(item.getName()));
+			isMeta.setLore(ColorUtil.colorList(item.getLore()));
 			itemStack.setItemMeta(isMeta);
 		} else {
 			itemStack = new ItemStack(Material.AIR);
@@ -55,7 +55,7 @@ public class ItemUtil {
 		}
 	}
 
-	public static void addGUIItem(String id, String name, Material mat, int type, List<String> lore, int data) {
+	private static void addGUIItem(String id, String name, Material mat, int type, List<String> lore, int data) {
 		stack.add(new IGUIItem() {
 
 			@Override
