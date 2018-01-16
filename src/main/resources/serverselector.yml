@@ -1,0 +1,161 @@
+###################################
+#              PLC                #
+#       PhanaticLobbyCore         #
+#         Made with <3            #
+###################################
+title: '&6Server selector'
+
+# MUST BE A MULTIPLE OF 9.
+# Ex: 9, 18, 27, 36, 45, 54
+guiSize: 54
+  
+slots:
+  '41':
+    link: 'climbers'
+    server: 'localhost:25566'
+  '14':
+    link: 'exampleServer'
+    server: 'localhost:25567'  
+  '30':
+    link: 'enchanters'
+    server: 'localhost:25568'
+  '34':
+    link: 'smelters'
+    server: 'localhost:25569'
+  '1': 
+    link: 'fillGlass'
+  '2': 
+    link: 'fillGlass'
+  '3': 
+    link: 'fillGlass'
+  '4': 
+    link: 'fillGlass'
+  '5': 
+    link: 'fillGlass'
+  '6': 
+    link: 'fillGlass'
+  '7': 
+    link: 'fillGlass'
+  '8': 
+    link: 'fillGlass'
+  '9': 
+    link: 'fillGlass'
+  '10': 
+    link: 'fillGlass'
+  '11': 
+    link: 'fillGlass'
+  '12': 
+    link: 'fillGlass'
+  '13': 
+    link: 'fillGlass'
+  '15': 
+    link: 'fillGlass'
+  '16': 
+    link: 'fillGlass'
+  '17': 
+    link: 'fillGlass'
+  '18': 
+    link: 'fillGlass'
+  '19': 
+    link: 'fillGlass'
+  '20': 
+    link: 'fillGlass'
+  '21': 
+    link: 'fillGlass'
+  '22': 
+    link: 'fillGlass'
+  '23': 
+    link: 'fillGlass'
+  '24': 
+    link: 'fillGlass'
+  '25': 
+    link: 'fillGlass'
+  '26': 
+    link: 'fillGlass'
+  '27': 
+    link: 'fillGlass'
+  '28': 
+    link: 'fillGlass'
+  '29': 
+    link: 'fillGlass'
+  '31': 
+    link: 'fillGlass'
+  '32': 
+    link: 'fillGlass'
+  '33': 
+    link: 'fillGlass'
+  '35': 
+    link: 'fillGlass'
+  '36': 
+    link: 'fillGlass'
+  '37': 
+    link: 'fillGlass'
+  '38': 
+    link: 'fillGlass'
+  '39': 
+    link: 'fillGlass'
+  '40': 
+    link: 'fillGlass'
+  '42': 
+    link: 'fillGlass'
+  '43': 
+    link: 'fillGlass'
+  '44': 
+    link: 'fillGlass'
+  '45': 
+    link: 'fillGlass'
+  '46': 
+    link: 'fillGlass'
+  '47': 
+    link: 'fillGlass'
+  '48': 
+    link: 'fillGlass'
+  '49': 
+    link: 'fillGlass'
+  '50': 
+    link: 'fillGlass'
+  '51': 
+    link: 'fillGlass'
+  '52': 
+    link: 'fillGlass'
+  '53': 
+    link: 'fillGlass'
+  '54': 
+    link: 'fillGlass'
+
+    
+items:
+  climbers:
+    name: '&6Climberss!'
+    material: 'LADDER'
+    type: 1
+    lore: 
+      - "&6Climb stuff!"
+    data: 0
+  exampleServer:
+    name: '&4Firemen'
+    material: 'FIREBALL'
+    type: 1 
+    lore: 
+      - "&4Burn stuff!"
+    data: 0
+  enchanters:
+    name: '&bEnchanters'
+    material: 'ANVIL'
+    type: 1 
+    lore: 
+      - "&2Enchant stuff!"
+    data: 0
+  smelters:
+    name: '&2Smelters'
+    material: 'FURNACE'
+    type: 1 
+    lore: 
+      - "&eSmelt stuff!"
+    data: 0
+  fillGlass:
+    name: ' '
+    material: 'STAINED_GLASS_PANE'
+    type: 0
+    lore: []
+    data: 15

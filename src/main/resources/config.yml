@@ -1,0 +1,22 @@
+###################################
+#              PLC                #
+#       PhanaticLobbyCore         #
+#         Made with <3            #
+###################################
+joinMsg: '&8[&2+&8] &6%PLAYER% has joined the game'
+quitMsg: '&7[&4-&8] &6%PLAYER% has left the game'
+
+playersHidden: '&6Player are now hidden'
+playersRevaled: '&6Players are now visible'
+
+hideName: '&6Toggle players'
+hideSlot: 0
+
+serverSelecterMat:  'COMPASS'
+serverSelecterSlot: 4
+serverSelecterName: '&6Server Selector'
+serverSelecterLore: 
+  - "Click me to join a server"
+  
+tabHeader: '&6FAM LIT'
+tabFooter: '&4DIE!!'

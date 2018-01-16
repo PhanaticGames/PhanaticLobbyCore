@@ -1,0 +1,8 @@
+name: PLC
+main: code.matthew.plc.PLC
+version: 0.0.7
+depends: [Vault, ProtocolLib]
+
+commands:
+  setspawn:
+    description: Sets the spawn

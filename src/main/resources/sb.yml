@@ -1,0 +1,13 @@
+###################################
+#              PLC                #
+#       PhanaticLobbyCore         #
+#         Made with <3            #
+###################################
+title: '&6--&8Phanatic Games&6--'
+
+lines:
+  - '&8Online'
+  - '&6%online_players%/20'
+  - '%br%'
+  - '&6Coins'
+  - '&8%coins%'
