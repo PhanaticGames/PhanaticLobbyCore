@@ -1,16 +1,15 @@
 package plc;
 
+import code.matthew.psc.utils.core.CommandManager;
 import code.matthew.psc.utils.strings.ColorUtil;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import plc.cmd.SetSpawn;
 import plc.listeners.env.Explosion;
 import plc.listeners.env.MobSpawn;
 import plc.listeners.env.Weather;
@@ -63,8 +62,8 @@ public class PLC extends JavaPlugin {
 		Serverselector.setup(FileUtil.getSS());
 		
 		getServer().getPluginManager().registerEvents(new Interact(), this);
-		
-		getCommand("setspawn").setExecutor(this);
+
+        CommandManager.regCommand(new SetSpawn());
 		
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
@@ -97,27 +96,6 @@ public class PLC extends JavaPlugin {
 		serverSelectorItemMeta.setDisplayName(name2);
 		serverSelectorItemMeta.setLore(ColorUtil.colorList(FileUtil.getConfig().getStringList("serverSelecterLore")));
 		serverSelectorItem.setItemMeta(serverSelectorItemMeta);
-	}
-	
-	@Override
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		if(label.equalsIgnoreCase("setspawn")) {
-			if(sender.isOp()) {
-				if(sender instanceof Player) {
-					Player p = (Player) sender;
-					FileUtil.getSpawnData().set("spawnX", p.getLocation().getX());
-					FileUtil.getSpawnData().set("spawnY", p.getLocation().getY());
-					FileUtil.getSpawnData().set("spawnZ", p.getLocation().getZ());
-					FileUtil.getSpawnData().set("spawnPitch", p.getEyeLocation().getPitch());
-					FileUtil.getSpawnData().set("spawnYaw", p.getEyeLocation().getYaw());
-					FileUtil.saveSpawnData();
-					p.sendMessage(ChatColor.BLUE + "Spawn set");
-				}
-			} else {
-				return false;
-			}
-		}
-		return false;
 	}
 	
 	public static PLC getInstance() {
