@@ -1,6 +1,6 @@
 package plc.cmd;
 
-import code.matthew.psc.api.ICommand;
+import code.matthew.psc.api.command.ICommand;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

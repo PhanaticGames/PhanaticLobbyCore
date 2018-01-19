@@ -84,7 +84,6 @@
         </repository>
     </repositories>
 
-
     <dependencies>
         <!--Bukkit API-->
         <dependency>
