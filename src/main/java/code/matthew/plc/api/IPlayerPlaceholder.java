@@ -4,7 +4,7 @@ import code.matthew.plc.util.Placeholder;
 import org.bukkit.entity.Player;
 
 /**
- * When implemented, can be used by {@link Placeholder#registerPlaceholder(IPlaceHolder)}
+ * When implemented, can be used by {@link Placeholder#registerPlayerPlaceholder(IPlayerPlaceholder)}
  * This can be used to add a placeholder to the scoreboard or future things
  * Note: This is made for player side variables or other things. Player is provided
  */

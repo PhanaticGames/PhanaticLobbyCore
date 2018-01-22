@@ -3,7 +3,7 @@ package code.matthew.plc.api;
 import code.matthew.plc.util.Placeholder;
 
 /**
- * When implemented, can be used by {@link Placeholder#registerPlaceholder(IPlaceHolder)}
+ * When implemented, can be used by {@link Placeholder#registerServerPlaceholder(IServerPlaceHolder)}
  * This can be used to add a placeholder to the scoreboard or future things
  * Note: This is made for server side variables or other things. No player is provided
  */
