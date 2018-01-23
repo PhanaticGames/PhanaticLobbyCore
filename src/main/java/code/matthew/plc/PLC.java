@@ -65,6 +65,7 @@ public class PLC extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Interact(), this);
 
         CommandManager.regCommand(new SetSpawn());
+        CommandManager.regCommand(new Spawn());
 		
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
