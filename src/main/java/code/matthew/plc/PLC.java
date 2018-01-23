@@ -1,6 +1,7 @@
 package code.matthew.plc;
 
 import code.matthew.plc.cmd.SetSpawn;
+import code.matthew.plc.cmd.Spawn;
 import code.matthew.plc.listeners.env.Explosion;
 import code.matthew.plc.listeners.env.MobSpawn;
 import code.matthew.plc.listeners.env.Weather;
