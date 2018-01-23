@@ -56,6 +56,7 @@ public class PLC extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Explosion(), this);
 		getServer().getPluginManager().registerEvents(new Hunger(), this);
 		getServer().getPluginManager().registerEvents(new MobSpawn(), this);
+		getServer().getPluginManager().registerEvents(new Move(), this);
 		
 		setupItems();
 

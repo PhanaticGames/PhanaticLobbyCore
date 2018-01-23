@@ -11,22 +11,15 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scoreboard.Scoreboard;
 
 public class Join implements Listener {
-
-	private Scoreboard pb;
-
-	public Scoreboard getScoreboard() {
-		return this.pb;
-	}
-
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		e.setJoinMessage("");
 		String msg = ColorUtil.colorStr(FileUtil.getConfig().getString("joinMsg"));
 		msg = msg.replaceAll("%PLAYER%", e.getPlayer().getName());
 		Bukkit.broadcastMessage(msg);
+		e.getPlayer().getInventory().clear();
 		e.getPlayer().getInventory().setItem(FileUtil.getConfig().getInt("hideSlot"), PLC.hidePlayersItem);
 		e.getPlayer().getInventory().setItem(FileUtil.getConfig().getInt("serverSelecterSlot"), PLC.serverSelectorItem);
 		ScoreboardManager.setScoreBoard(e.getPlayer());
