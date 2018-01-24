@@ -81,7 +81,7 @@ public class PLC extends JavaPlugin {
 		
 		new ITimeCheck().runTaskTimer(this, 0, 20L);
 
-        PSC.getInstance().getNmsUtil().regiserEntity("Server Villiger", 120, EntityVillager.class, ServerVillager.class);
+        PSC.getInstance().getNmsUtil().regiserEntity("Server Villager", 120, EntityVillager.class, ServerVillager.class);
 	}
 	
 	@Override
