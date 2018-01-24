@@ -61,6 +61,7 @@ public class PLC extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Move(), this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new CropTrample(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
 
 		setupItems();
 
