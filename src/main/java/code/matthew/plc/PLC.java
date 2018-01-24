@@ -3,6 +3,7 @@ package code.matthew.plc;
 import code.matthew.plc.cmd.SetSpawn;
 import code.matthew.plc.cmd.Spawn;
 import code.matthew.plc.cmd.StaffMode;
+import code.matthew.plc.entity.ServerVillager;
 import code.matthew.plc.listeners.env.Explosion;
 import code.matthew.plc.listeners.env.MobSpawn;
 import code.matthew.plc.listeners.env.Weather;
@@ -14,10 +15,12 @@ import code.matthew.plc.time.ITimeCheck;
 import code.matthew.plc.util.FileUtil;
 import code.matthew.plc.util.ItemUtil;
 import code.matthew.plc.util.Placeholder;
+import code.matthew.psc.PSC;
 import code.matthew.psc.utils.core.CommandManager;
 import code.matthew.psc.utils.strings.ColorUtil;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
+import net.minecraft.server.v1_8_R3.EntityVillager;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -77,6 +80,8 @@ public class PLC extends JavaPlugin {
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
 		new ITimeCheck().runTaskTimer(this, 0, 20L);
+
+        PSC.getInstance().getNmsUtil().regiserEntity("Server Villiger", 120, EntityVillager.class, ServerVillager.class);
 	}
 	
 	@Override
