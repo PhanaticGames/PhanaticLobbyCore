@@ -20,3 +20,6 @@ serverSelecterLore:
   
 tabHeader: '&6FAM LIT'
 tabFooter: '&4DIE!!'
+
+staffOn: '&6Staff mode enabled'
+staffOff: '&cStaff mode disabled'

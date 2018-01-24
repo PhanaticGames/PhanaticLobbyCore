@@ -2,6 +2,7 @@ package code.matthew.plc;
 
 import code.matthew.plc.cmd.SetSpawn;
 import code.matthew.plc.cmd.Spawn;
+import code.matthew.plc.cmd.StaffMode;
 import code.matthew.plc.listeners.env.Explosion;
 import code.matthew.plc.listeners.env.MobSpawn;
 import code.matthew.plc.listeners.env.Weather;
@@ -71,7 +72,8 @@ public class PLC extends JavaPlugin {
 
         CommandManager.regCommand(new SetSpawn());
         CommandManager.regCommand(new Spawn());
-		
+        CommandManager.regCommand(new StaffMode());
+
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
 		new ITimeCheck().runTaskTimer(this, 0, 20L);
