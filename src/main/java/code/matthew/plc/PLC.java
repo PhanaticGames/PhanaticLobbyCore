@@ -33,7 +33,8 @@ public class PLC extends JavaPlugin {
 	public static ItemStack serverSelectorItem;
 	
 	public static ArrayList<Player> hidden = new ArrayList<>();
-	
+	public static ArrayList<Player> staffMode = new ArrayList<>();
+
 	private static PLC plc;
 	private ProtocolManager protocolManager;
 	
@@ -58,7 +59,9 @@ public class PLC extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new Hunger(), this);
 		getServer().getPluginManager().registerEvents(new MobSpawn(), this);
 		getServer().getPluginManager().registerEvents(new Move(), this);
-		
+        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new CropTrample(), this);
+
 		setupItems();
 
 		Serverselector.setup(FileUtil.getSS());
