@@ -1,5 +1,6 @@
 package code.matthew.plc;
 
+import code.matthew.plc.cmd.ServerEntity;
 import code.matthew.plc.cmd.SetSpawn;
 import code.matthew.plc.cmd.Spawn;
 import code.matthew.plc.cmd.StaffMode;
@@ -76,6 +77,7 @@ public class PLC extends JavaPlugin {
         CommandManager.regCommand(new SetSpawn());
         CommandManager.regCommand(new Spawn());
         CommandManager.regCommand(new StaffMode());
+        CommandManager.regCommand(new ServerEntity());
 
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
