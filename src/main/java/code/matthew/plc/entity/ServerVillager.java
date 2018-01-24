@@ -20,10 +20,8 @@ public class ServerVillager extends EntityVillager {
         super.initAttributes();
         this.setCustomName(ChatColor.GREEN + "Custom villager");
         this.setCustomNameVisible(true);
-        this.ai = false;
+        this.setInvisible(false);
     }
-
-
 
     public static Villager spawn(Location loc) {
         World world = (World) ((CraftWorld) loc.getWorld()).getHandle();
