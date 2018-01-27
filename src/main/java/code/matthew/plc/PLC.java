@@ -1,9 +1,6 @@
 package code.matthew.plc;
 
-import code.matthew.plc.cmd.ServerEntity;
-import code.matthew.plc.cmd.SetSpawn;
-import code.matthew.plc.cmd.Spawn;
-import code.matthew.plc.cmd.StaffMode;
+import code.matthew.plc.cmd.*;
 import code.matthew.plc.entity.ServerVillager;
 import code.matthew.plc.listeners.env.Explosion;
 import code.matthew.plc.listeners.env.MobSpawn;
@@ -54,19 +51,7 @@ public class PLC extends JavaPlugin {
 		
 		ItemUtil.scanForItems(FileUtil.getSS());
 		
-		getServer().getPluginManager().registerEvents(new Join(), this);
-		getServer().getPluginManager().registerEvents(new Leave(), this);
-		getServer().getPluginManager().registerEvents(new InvClick(), this);
-		getServer().getPluginManager().registerEvents(new Drop(), this);
-		getServer().getPluginManager().registerEvents(new Damage(), this);
-		getServer().getPluginManager().registerEvents(new Weather(), this);
-		getServer().getPluginManager().registerEvents(new Explosion(), this);
-		getServer().getPluginManager().registerEvents(new Hunger(), this);
-		getServer().getPluginManager().registerEvents(new MobSpawn(), this);
-		getServer().getPluginManager().registerEvents(new Move(), this);
-        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
-        getServer().getPluginManager().registerEvents(new CropTrample(), this);
-        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
+		regListeners();
 
 		setupItems();
 
@@ -78,6 +63,7 @@ public class PLC extends JavaPlugin {
         CommandManager.regCommand(new Spawn());
         CommandManager.regCommand(new StaffMode());
         CommandManager.regCommand(new ServerEntity());
+        CommandManager.regCommand(new EditEntity());
 
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
@@ -90,6 +76,23 @@ public class PLC extends JavaPlugin {
 	public void onDisable() {
 	
 	}
+
+	private void regListeners() {
+        getServer().getPluginManager().registerEvents(new Join(), this);
+        getServer().getPluginManager().registerEvents(new Leave(), this);
+        getServer().getPluginManager().registerEvents(new InvClick(), this);
+        getServer().getPluginManager().registerEvents(new Drop(), this);
+        getServer().getPluginManager().registerEvents(new Damage(), this);
+        getServer().getPluginManager().registerEvents(new Weather(), this);
+        getServer().getPluginManager().registerEvents(new Explosion(), this);
+        getServer().getPluginManager().registerEvents(new Hunger(), this);
+        getServer().getPluginManager().registerEvents(new MobSpawn(), this);
+        getServer().getPluginManager().registerEvents(new Move(), this);
+        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new CropTrample(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
+        getServer().getPluginManager().registerEvents(new PlayerEntityInteract(), this);
+    }
 	
 	public ProtocolManager getProtocal() {
 		return protocolManager;

@@ -37,7 +37,6 @@ public class Join implements Listener {
 		e.getPlayer().teleport(loc);
 		TabList.setTabList(e.getPlayer());
 		e.getPlayer().getInventory().setHeldItemSlot(4);
-		// staff mode, block break
 	}
 
 }

@@ -16,6 +16,8 @@ public class Damage implements Listener {
 			if(!p.isOp()) {
 				e.setCancelled(true);
 			}
+		} else if(e.getEntityType() == EntityType.VILLAGER) {
+			e.setCancelled(true);
 		}
 	}
 }

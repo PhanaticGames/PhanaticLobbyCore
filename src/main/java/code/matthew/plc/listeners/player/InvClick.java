@@ -29,26 +29,28 @@ public class InvClick implements Listener {
             event.setCancelled(true);
         }
 
-        if (!inventory.getName().equals(Serverselector.inv.getName())) {
-            return;
-        }
+        if (inventory.getName().equals(Serverselector.inv.getName())) {
+            event.setCancelled(true);
+            if (clicked != null) {
+                for (int i = 0; i < ItemUtil.guiItems.size(); i++) {
+                    if (ItemUtil.guiItems.contains(clicked)) {
+                        String server = null;
+                        for (int j = 0; j < idToServer.size(); j++) {
+                            server = idToServer.get(ChatColor.stripColor(clicked.getItemMeta().getDisplayName()));
+                        }
 
-        if (clicked != null) {
-            for (int i = 0; i < ItemUtil.guiItems.size(); i++) {
-                if (ItemUtil.guiItems.contains(clicked)) {
-                    String server = null;
-                    for (int j = 0; j < idToServer.size(); j++) {
-                        server = idToServer.get(ChatColor.stripColor(clicked.getItemMeta().getDisplayName()));
-                    }
-
-                    if (server != null) {
-                        ByteArrayDataOutput out = ByteStreams.newDataOutput();
-                        out.writeUTF("Connect");
-                        out.writeUTF(server);
-                        player.sendPluginMessage(PLC.getInstance(), "BungeeCord", out.toByteArray());
+                        if (server != null) {
+                            ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                            out.writeUTF("Connect");
+                            out.writeUTF(server);
+                            player.sendPluginMessage(PLC.getInstance(), "BungeeCord", out.toByteArray());
+                        }
                     }
                 }
             }
+        } if(ChatColor.stripColor(inventory.getName()).equals("Edit entity")) {
+            event.setCancelled(true);
+
         }
     }
 
