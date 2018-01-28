@@ -1,5 +1,6 @@
 package code.matthew.plc;
 
+import code.matthew.plc.api.IWait;
 import code.matthew.plc.cmd.*;
 import code.matthew.plc.entity.ServerVillager;
 import code.matthew.plc.listeners.env.ChunkUnload;
@@ -21,12 +22,15 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import net.minecraft.server.v1_8_R3.EntityVillager;
 import org.bukkit.Material;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PLC extends JavaPlugin {
 
@@ -37,6 +41,8 @@ public class PLC extends JavaPlugin {
 	
 	public static ArrayList<Player> hidden = new ArrayList<>();
 	public static ArrayList<Player> staffMode = new ArrayList<>();
+	public static Map<Player, Entity> playerAndEntity = new HashMap<>();
+    public static Map<Player, IWait> waitingFor = new HashMap<>();
 
 	private static PLC plc;
 	private ProtocolManager protocolManager;
@@ -97,6 +103,8 @@ public class PLC extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlace(), this);
         getServer().getPluginManager().registerEvents(new PlayerEntityInteract(), this);
         getServer().getPluginManager().registerEvents(new ChunkUnload(), this);
+        getServer().getPluginManager().registerEvents(new Chat(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClose(), this);
     }
 	
 	public ProtocolManager getProtocal() {

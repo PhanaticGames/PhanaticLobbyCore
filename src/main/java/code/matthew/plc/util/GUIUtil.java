@@ -39,13 +39,13 @@ public class GUIUtil {
 
             exitLore.add(ChatColor.GREEN + "Use this to exit this GUI");
             editLore.add(ChatColor.GREEN + "Use this to edit this entity's name");
-            lookLore.add(ChatColor.GREEN + "Use this to make this entity look at you");
+            lookLore.add(ChatColor.GREEN + "Use this to make this entity look the way you do");
             moveLore.add(ChatColor.GREEN + "Use this to move the entity");
             killLore.add(ChatColor.GREEN + "Use this to kill this entity");
 
             exitMeta.setDisplayName(ChatColor.RED + "Exit");
             editMeta.setDisplayName(ChatColor.AQUA + "Edit name");
-            lookMeta.setDisplayName(ChatColor.AQUA + "Look at me");
+            lookMeta.setDisplayName(ChatColor.AQUA + "Look how I do");
             moveMeta.setDisplayName(ChatColor.AQUA + "Move");
             killMeta.setDisplayName(ChatColor.RED + "Kill");
 

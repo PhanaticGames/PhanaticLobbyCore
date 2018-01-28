@@ -1,5 +1,6 @@
 package code.matthew.plc.listeners.player;
 
+import code.matthew.plc.PLC;
 import code.matthew.plc.util.FileUtil;
 import code.matthew.psc.utils.strings.ColorUtil;
 import org.bukkit.Bukkit;
@@ -15,6 +16,13 @@ public class Leave implements Listener {
 		String msg = ColorUtil.colorStr(FileUtil.getConfig().getString("quitMsg"));
 		msg = msg.replaceAll("%PLAYER%", e.getPlayer().getName());
 		Bukkit.broadcastMessage(msg);
+
+		if(PLC.playerAndEntity.containsKey(e.getPlayer())) {
+            PLC.playerAndEntity.remove(e.getPlayer());
+        }
+        if(PLC.waitingFor.containsKey(e.getPlayer())) {
+            PLC.waitingFor.remove(e.getPlayer());
+        }
 	}
 
 }
