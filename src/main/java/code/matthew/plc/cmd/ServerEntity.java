@@ -22,15 +22,21 @@ public class ServerEntity extends ICommand {
 
         ServerVillager villager = new ServerVillager(worldServer);
         villager.setLocation(p.getLocation().getX(), p.getLocation().getY(), p.getLocation().getZ(), p.getLocation().getYaw(), p.getLocation().getPitch());
+
         worldServer.addEntity(villager, CreatureSpawnEvent.SpawnReason.CUSTOM);
 
         NBTTagCompound tag = villager.getNBTTag();
-        if(tag == null) {
+        if (tag == null) {
             tag = new NBTTagCompound();
         }
         villager.c(tag);
         tag.setInt("NoAI", 1);
         villager.f(tag);
+
+        NBTTagCompound pres = new NBTTagCompound();
+        villager.c(pres);
+        tag.setInt("PersistenceRequired", 1);
+        villager.f(pres);
 
         return true;
     }

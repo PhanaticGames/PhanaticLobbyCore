@@ -14,6 +14,7 @@ public class ServerVillager extends EntityVillager {
         this.setCustomName(ChatColor.GREEN + "Custom villager");
         this.setCustomNameVisible(true);
         this.setInvisible(false);
+        this.persistent = true;
     }
 
 }

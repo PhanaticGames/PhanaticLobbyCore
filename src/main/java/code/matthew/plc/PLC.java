@@ -2,6 +2,7 @@ package code.matthew.plc;
 
 import code.matthew.plc.cmd.*;
 import code.matthew.plc.entity.ServerVillager;
+import code.matthew.plc.listeners.env.ChunkUnload;
 import code.matthew.plc.listeners.env.Explosion;
 import code.matthew.plc.listeners.env.MobSpawn;
 import code.matthew.plc.listeners.env.Weather;
@@ -39,8 +40,13 @@ public class PLC extends JavaPlugin {
 
 	private static PLC plc;
 	private ProtocolManager protocolManager;
-	
-	@Override
+
+    @Override
+    public void onLoad() {
+        PSC.getInstance().getNmsUtil().regiserEntity("Server Villager", 120, EntityVillager.class, ServerVillager.class);
+    }
+
+    @Override
 	public void onEnable() {
 		plc = this;
 		util = new FileUtil(this);
@@ -68,8 +74,6 @@ public class PLC extends JavaPlugin {
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 		
 		new ITimeCheck().runTaskTimer(this, 0, 20L);
-
-        PSC.getInstance().getNmsUtil().regiserEntity("Server Villager", 120, EntityVillager.class, ServerVillager.class);
 	}
 	
 	@Override
@@ -92,6 +96,7 @@ public class PLC extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CropTrample(), this);
         getServer().getPluginManager().registerEvents(new BlockPlace(), this);
         getServer().getPluginManager().registerEvents(new PlayerEntityInteract(), this);
+        getServer().getPluginManager().registerEvents(new ChunkUnload(), this);
     }
 	
 	public ProtocolManager getProtocal() {
