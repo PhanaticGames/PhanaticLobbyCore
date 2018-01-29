@@ -1,5 +1,6 @@
 package code.matthew.plc.cmd;
 
+import code.matthew.plc.PLC;
 import code.matthew.plc.entity.ServerVillager;
 import code.matthew.psc.api.command.ICommand;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 
 public class ServerEntity extends ICommand {
 
@@ -29,14 +31,17 @@ public class ServerEntity extends ICommand {
         if (tag == null) {
             tag = new NBTTagCompound();
         }
+
         villager.c(tag);
         tag.setInt("NoAI", 1);
         villager.f(tag);
 
         NBTTagCompound pres = new NBTTagCompound();
         villager.c(pres);
-        tag.setInt("PersistenceRequired", 1);
+        pres.setInt("PersistenceRequired", 1);
         villager.f(pres);
+
+        villager.getBukkitEntity().setMetadata("id", new FixedMetadataValue(PLC.getInstance(), "0"));
 
         return true;
     }

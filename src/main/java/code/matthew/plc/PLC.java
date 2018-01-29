@@ -1,12 +1,10 @@
 package code.matthew.plc;
 
+import code.matthew.plc.api.IEntityPersist;
 import code.matthew.plc.api.IWait;
 import code.matthew.plc.cmd.*;
 import code.matthew.plc.entity.ServerVillager;
-import code.matthew.plc.listeners.env.ChunkUnload;
-import code.matthew.plc.listeners.env.Explosion;
-import code.matthew.plc.listeners.env.MobSpawn;
-import code.matthew.plc.listeners.env.Weather;
+import code.matthew.plc.listeners.env.*;
 import code.matthew.plc.listeners.player.*;
 import code.matthew.plc.placeholder.OnlinePlayers;
 import code.matthew.plc.placeholder.Rank;
@@ -22,15 +20,14 @@ import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import net.minecraft.server.v1_8_R3.EntityVillager;
 import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PLC extends JavaPlugin {
 
@@ -43,6 +40,9 @@ public class PLC extends JavaPlugin {
 	public static ArrayList<Player> staffMode = new ArrayList<>();
 	public static Map<Player, Entity> playerAndEntity = new HashMap<>();
     public static Map<Player, IWait> waitingFor = new HashMap<>();
+    public static List<IEntityPersist> saveTheseBois = new ArrayList<>();
+
+    public static boolean ranEntityMetaDataSet = false;
 
 	private static PLC plc;
 	private ProtocolManager protocolManager;
@@ -62,7 +62,9 @@ public class PLC extends JavaPlugin {
 		Placeholder.registerPlayerPlaceholder(new Rank(this));
 		
 		ItemUtil.scanForItems(FileUtil.getSS());
-		
+
+		readEntityData();
+
 		regListeners();
 
 		setupItems();
@@ -84,7 +86,10 @@ public class PLC extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-	
+	    for(IEntityPersist entityPersist : saveTheseBois) {
+	        FileUtil.getSpawnData().set("saved." + entityPersist.uuid().toString() , entityPersist.value());
+        }
+        FileUtil.saveEntityData();
 	}
 
 	private void regListeners() {
@@ -105,6 +110,7 @@ public class PLC extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChunkUnload(), this);
         getServer().getPluginManager().registerEvents(new Chat(), this);
         getServer().getPluginManager().registerEvents(new InventoryClose(), this);
+        getServer().getPluginManager().registerEvents(new WorldUnload(), this);
     }
 	
 	public ProtocolManager getProtocal() {
@@ -133,4 +139,34 @@ public class PLC extends JavaPlugin {
 	public static PLC getInstance() {
 		return plc;
 	}
+
+	public static IEntityPersist getEntityPres(UUID uuid) {
+        for(IEntityPersist entityPersist : saveTheseBois) {
+            if(entityPersist.uuid().equals(uuid)) {
+                return entityPersist;
+            }
+        }
+        return null;
+    }
+
+    private void readEntityData() {
+        ConfigurationSection section = FileUtil.getEntityData().getConfigurationSection("saved");
+        if(section != null) {
+            for(String key : section.getKeys(false)) {
+                UUID uuid = UUID.fromString(key);
+                String id = FileUtil.getEntityData().getString("saved." + key);
+                saveTheseBois.add(new IEntityPersist() {
+                    @Override
+                    public UUID uuid() {
+                        return uuid;
+                    }
+
+                    @Override
+                    public String value() {
+                        return id;
+                    }
+                });
+            }
+        }
+    }
 }

@@ -12,6 +12,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.metadata.MetadataValue;
+
+import java.util.List;
 
 
 public class PlayerEntityInteract implements Listener {
@@ -40,6 +43,13 @@ public class PlayerEntityInteract implements Listener {
                 } else {
                     // You have a stick but no perms???!?!??!?!
                     player.getInventory().remove(Material.STICK);
+                }
+            }else {
+                if(npc.hasMetadata("id")) {
+                    List<MetadataValue> debug =  npc.getMetadata("id");
+                    for(MetadataValue s : debug) {
+                        player.sendMessage(s.asString());
+                    }
                 }
             }
         }

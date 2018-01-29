@@ -2,6 +2,7 @@ package code.matthew.plc.util;
 
 import code.matthew.plc.PLC;
 import code.matthew.psc.api.file.ConfigFile;
+import code.matthew.psc.utils.logs.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,6 +16,8 @@ public class FileUtil {
     private static ConfigFile ss;
     private static File spawnDataFile;
     private static FileConfiguration spawnData;
+    private static File entityDataFile;
+    private static FileConfiguration entityData;
 
     private PLC plc;
 
@@ -46,11 +49,25 @@ public class FileUtil {
             plc.saveResource("spawn.yml", false);
         }
 
+        entityDataFile  = new File(plc.getDataFolder() + File.separator + "entityDat.yml");
+
+        if (!spawnDataFile.exists()) {
+            try {
+                entityDataFile.createNewFile();
+            }catch (IOException ex) {
+                Logger.log(Logger.LogType.ERROR, "ERROR SAVING ENTITY DATA FILE");
+                if(Logger.isDebug()) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+
         reload();
     }
 
     public static void reload() {
         spawnData = YamlConfiguration.loadConfiguration(spawnDataFile);
+        entityData = YamlConfiguration.loadConfiguration(entityDataFile);
     }
 
     public static FileConfiguration getConfig() {
@@ -69,9 +86,21 @@ public class FileUtil {
         return spawnData;
     }
 
+    public static FileConfiguration getEntityData() {
+        return entityData;
+    }
+
     public static void saveSpawnData() {
         try {
             spawnData.save(spawnDataFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveEntityData() {
+        try {
+            entityData.save(entityDataFile);
         } catch (IOException e) {
             e.printStackTrace();
         }

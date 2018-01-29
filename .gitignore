@@ -66,3 +66,6 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+
+# Project specific files:
+server.jar
