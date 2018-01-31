@@ -14,6 +14,7 @@ public class WorldUnload implements Listener {
 
     @EventHandler
     public void onWordUnload(WorldUnloadEvent event) {
+        System.out.println("I AM BEING VALLED ");
         for(Entity e : event.getWorld().getEntities()) {
             if(e.getType() == EntityType.VILLAGER) {
                 if(e.hasMetadata("id")) {

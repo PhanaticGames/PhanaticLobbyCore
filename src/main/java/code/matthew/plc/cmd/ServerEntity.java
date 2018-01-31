@@ -1,6 +1,7 @@
 package code.matthew.plc.cmd;
 
 import code.matthew.plc.PLC;
+import code.matthew.plc.api.IEntityPersist;
 import code.matthew.plc.entity.ServerVillager;
 import code.matthew.psc.api.command.ICommand;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
@@ -10,6 +11,8 @@ import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.metadata.FixedMetadataValue;
+
+import java.util.UUID;
 
 public class ServerEntity extends ICommand {
 
@@ -43,6 +46,17 @@ public class ServerEntity extends ICommand {
 
         villager.getBukkitEntity().setMetadata("id", new FixedMetadataValue(PLC.getInstance(), "0"));
 
+        PLC.saveTheseBois.add(new IEntityPersist() {
+            @Override
+            public UUID uuid() {
+                return villager.getUniqueID();
+            }
+
+            @Override
+            public String value() {
+                return villager.getBukkitEntity().getMetadata("id").get(0).asString();
+            }
+        });
         return true;
     }
 }

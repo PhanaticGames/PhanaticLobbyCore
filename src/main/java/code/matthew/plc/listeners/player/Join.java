@@ -5,6 +5,7 @@ import code.matthew.plc.api.IEntityPersist;
 import code.matthew.plc.sb.ScoreboardManager;
 import code.matthew.plc.tab.TabList;
 import code.matthew.plc.util.FileUtil;
+import code.matthew.psc.utils.logs.Logger;
 import code.matthew.psc.utils.strings.ColorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -43,11 +44,16 @@ public class Join implements Listener {
 		e.getPlayer().getInventory().setHeldItemSlot(4);
 
 		if(!PLC.ranEntityMetaDataSet) {
+		    Logger.log(Logger.LogType.DEBUG, "WE HAVE NOT DONE ENTITY META SETTING, STARTING NOW");
 		    for(Entity entity : e.getPlayer().getWorld().getEntities()) {
                 if(entity.getType() == EntityType.VILLAGER) {
+                    Logger.log(Logger.LogType.DEBUG, "FOUND VILLAER");
                     IEntityPersist entityPersist = PLC.getEntityPres(entity.getUniqueId());
                     if(entityPersist != null) {
+                        Logger.log(Logger.LogType.DEBUG, "SETTING ENTITY META");
                         entity.setMetadata("id", new FixedMetadataValue(PLC.getInstance(), entityPersist.value()));
+                    } else {
+                        Logger.log(Logger.LogType.DEBUG, "ENTITY DAT IS NULL");
                     }
                 }
             }
