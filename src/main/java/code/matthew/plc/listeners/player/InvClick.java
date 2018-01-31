@@ -1,7 +1,6 @@
 package code.matthew.plc.listeners.player;
 
 import code.matthew.plc.PLC;
-import code.matthew.plc.api.IEntityPersist;
 import code.matthew.plc.api.IWait;
 import code.matthew.plc.serverselector.Serverselector;
 import code.matthew.plc.util.ItemUtil;
@@ -112,11 +111,7 @@ public class InvClick implements Listener {
                 } else if (stack.getType() == Material.DIAMOND_SWORD) {
                     Entity entity = PLC.playerAndEntity.get(player);
                     if(entity != null) {
-                        IEntityPersist entityPersist = PLC.getEntityPres(entity.getUniqueId());
-
-                        if (entityPersist != null) {
-                            PLC.saveTheseBois.remove(entityPersist);
-                        }
+                        entity.remove();
                         if (PLC.playerAndEntity.containsKey(player)) {
                             PLC.playerAndEntity.remove(player);
                         }
