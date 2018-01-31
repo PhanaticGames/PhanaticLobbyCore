@@ -1,8 +1,11 @@
 package code.matthew.plc.listeners.player;
 
 import code.matthew.plc.PLC;
+import code.matthew.plc.util.FileUtil;
 import code.matthew.plc.util.GUIUtil;
 import code.matthew.psc.utils.strings.ColorUtil;
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -46,9 +49,15 @@ public class PlayerEntityInteract implements Listener {
                 }
             }else {
                 if(npc.hasMetadata("id")) {
-                    List<MetadataValue> debug =  npc.getMetadata("id");
-                    for(MetadataValue s : debug) {
-                        player.sendMessage(s.asString());
+                    List<MetadataValue> meta =  npc.getMetadata("id");
+                    String id = meta.get(0).asString();
+                    // We get the 0 index because there should only be that one
+                    String server = FileUtil.getESI().getString(id);
+                    if(server != null) {
+                        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+                        out.writeUTF("Connect");
+                        out.writeUTF(server);
+                        player.sendPluginMessage(PLC.getInstance(), "BungeeCord", out.toByteArray());
                     }
                 }
             }

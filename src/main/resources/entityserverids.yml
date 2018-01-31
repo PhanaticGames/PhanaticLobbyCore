@@ -1,0 +1,6 @@
+###
+### This i sthe entity server id map
+### To make one, set any number to a string
+### Like 0: 'BUNGEESERVERID'
+###
+0: 'Bunkers-1'

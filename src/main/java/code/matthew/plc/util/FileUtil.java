@@ -14,6 +14,7 @@ public class FileUtil {
     private static ConfigFile config;
     private static ConfigFile sb;
     private static ConfigFile ss;
+    private static ConfigFile esi;
     private static File spawnDataFile;
     private static FileConfiguration spawnData;
     private static File entityDataFile;
@@ -39,6 +40,10 @@ public class FileUtil {
         ss.setup();
         ss.reload();
 
+        esi = new ConfigFile(plc, "entityserverids.yml");
+        esi.setup();
+        esi.reload();
+
         if (!plc.getDataFolder().exists()) {
             plc.getDataFolder().mkdir();
         }
@@ -49,14 +54,14 @@ public class FileUtil {
             plc.saveResource("spawn.yml", false);
         }
 
-        entityDataFile  = new File(plc.getDataFolder() + File.separator + "entityDat.yml");
+        entityDataFile = new File(plc.getDataFolder() + File.separator + "entityDat.yml");
 
         if (!spawnDataFile.exists()) {
             try {
                 entityDataFile.createNewFile();
-            }catch (IOException ex) {
+            } catch (IOException ex) {
                 Logger.log(Logger.LogType.ERROR, "ERROR SAVING ENTITY DATA FILE");
-                if(Logger.isDebug()) {
+                if (Logger.isDebug()) {
                     ex.printStackTrace();
                 }
             }
@@ -72,6 +77,10 @@ public class FileUtil {
 
     public static FileConfiguration getConfig() {
         return config.getConfiguration();
+    }
+
+    public static FileConfiguration getESI() {
+        return esi.getConfiguration();
     }
 
     public static FileConfiguration getSB() {
