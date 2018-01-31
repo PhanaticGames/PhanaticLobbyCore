@@ -17,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
 import java.util.HashMap;
@@ -112,6 +113,31 @@ public class InvClick implements Listener {
                     Entity entity = PLC.playerAndEntity.get(player);
                     if(entity != null) {
                         entity.remove();
+                        if (PLC.playerAndEntity.containsKey(player)) {
+                            PLC.playerAndEntity.remove(player);
+                        }
+                    }
+                    player.closeInventory();
+                }else if (stack.getType() == Material.BOOK) {
+                    Entity entity = PLC.playerAndEntity.get(player);
+                    if(entity != null) {
+                        player.sendMessage(ChatColor.GREEN + "Please, enter the id of the sever in your chat. Please note these are mapped config vars.");
+                        PLC.waitingFor.put(player, new IWait() {
+                            @Override
+                            public Player player() {
+                                return player;
+                            }
+
+                            @Override
+                            public Entity entity() {
+                                return entity;
+                            }
+
+                            @Override
+                            public void run(String res) {
+                                entity().setMetadata("id", new FixedMetadataValue(PLC.getInstance(), res));
+                            }
+                        });
                         if (PLC.playerAndEntity.containsKey(player)) {
                             PLC.playerAndEntity.remove(player);
                         }
